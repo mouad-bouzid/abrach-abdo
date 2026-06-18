@@ -1,250 +1,133 @@
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-.page {
-  max-width: 690px;
-  margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #fff;
-}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d0d0d; }
 
-/* HERO */
-.hero {
-  background: #0B5D56;
-  width: 100%;
-  padding: 2.5rem 1.5rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 180px; height: 180px;
-  background: rgba(201,168,76,0.1);
-  border-radius: 50%;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 20px; left: -40px;
-  width: 120px; height: 120px;
-  background: rgba(201,168,76,0.06);
-  border-radius: 50%;
-}
-.logo-wrap {
-  position: relative; z-index: 2;
-  margin-bottom: 1rem;
-}
-.logo-wrap img {
-  height: 60px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-}
-.hero-name {
-  font-size: 24px; font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.02em;
-  position: relative; z-index: 2;
-  margin-bottom: 4px;
-}
-.hero-title {
-  font-size: 13px;
-  color: #C9A84C;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-  position: relative; z-index: 2;
-  margin-bottom: 1.5rem;
-}
-.gold-line {
-  width: 60px; height: 2px;
-  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
-  margin: 0 auto 1.5rem;
-  position: relative; z-index: 2;
-}
-.car-wrap {
-  position: relative; z-index: 2;
-  margin: 0 -1.5rem;
-}
-.car-wrap img {
-  width: 100%;
-  max-height: 180px;
-  object-fit: contain;
-  display: block;
-}
-.vip-badge {
-  position: absolute;
-  top: 10px; right: 20px;
-  background: linear-gradient(135deg, #C9A84C, #e8c97a);
-   color: #0B5D56;
-  font-size: 10px; font-weight: 800;
-  letter-spacing: 0.1em;
-  padding: 4px 12px;
-  border-radius: 20px;
-  z-index: 3;
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes carSlide { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); } 50% { box-shadow: 0 0 0 10px rgba(201,168,76,0); } }
+@keyframes goldLine { from { width: 0; opacity: 0; } to { width: 60px; opacity: 1; } }
 
-/* BODY */
-.body {
-  background: #f8f3f3;
-  padding: 1.5rem;
-}
+.page { max-width: 390px; margin: 0.5rem auto; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
 
-/* CONTACT BUTTONS */
-.contact-row { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-.cbtn {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center; gap: 5px;
-  padding: 11px 6px;
-  border-radius: 8px;
-  font-size: 11px; font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-}
-.cbtn.wa { background: #0B5D56; color: #fff; }
+.hero { background: linear-gradient(160deg, #0e6b62 0%, #0B5D56 60%, #094e48 100%); padding: 2rem 1.5rem 0; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%); border-radius: 50%; }
+.hero::after { content: ''; position: absolute; bottom: 60px; left: -60px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%); border-radius: 50%; }
+
+.vip-badge { display: inline-block; background: linear-gradient(135deg, #C9A84C, #e8c97a, #C9A84C); background-size: 200% auto; animation: shimmer 3s linear infinite; color: #0B5D56; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem; position: relative; z-index: 2; }
+
+.logo-wrap { position: relative; z-index: 2; margin-bottom: 0.8rem; animation: fadeUp 0.8s ease; }
+.logo-wrap img { height: 50px; object-fit: contain; }
+
+.hero-name { font-size: 24px; font-weight: 800; color: #fff; position: relative; z-index: 2; margin-bottom: 4px; animation: fadeUp 0.7s 0.1s ease both; }
+.hero-title { font-size: 11px; color: #C9A84C; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; position: relative; z-index: 2; margin-bottom: 1rem; animation: fadeUp 0.7s 0.2s ease both; }
+
+.gold-line { height: 2px; background: linear-gradient(90deg, transparent, #C9A84C, transparent); margin: 0 auto 1.2rem; position: relative; z-index: 2; animation: goldLine 1s 0.3s ease both; }
+
+.car-wrap { position: relative; z-index: 2; animation: carSlide 0.9s 0.3s ease both; }
+.car-wrap img { width: 100%; max-height: 170px; object-fit: contain; display: block; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); }
+
+.body { background: #fff; padding: 1.5rem; }
+
+.contact-row { display: flex; gap: 8px; margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.4s ease both; }
+.cbtn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 11px 6px; border-radius: 10px; font-size: 11px; font-weight: 700; text-decoration: none; }
+.cbtn.wa { background: #0B5D56; color: #fff; box-shadow: 0 4px 15px rgba(11,93,86,0.3); animation: pulse 2.5s infinite; }
 .cbtn.call { background: #f5f5f5; color: #0B5D56; border: 1px solid #e0e0e0; }
-.cbtn.ig { background: linear-gradient(135deg, #C9A84C22, #C9A84C11); color: #C9A84C; border: 1px solid #C9A84C44; }
+.cbtn.ig { background: linear-gradient(135deg, #C9A84C18, #C9A84C0a); color: #C9A84C; border: 1px solid #C9A84C55; }
 .cbtn i { font-size: 15px; }
 
-/* SERVICES */
-.sec-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: #C9A84C; margin-bottom: 12px;
-  display: flex; align-items: center; gap: 8px;
-}
-.sec-label::after {
-  content: '';
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, #C9A84C44, transparent);
-}
+.sec-label { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.sec-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, #C9A84C66, transparent); }
 
-.services-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
-.svc {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 14px;
-  border: 1px solid #f0f0f0;
-  border-radius: 10px;
-  background: #fafafa;
-}
-.svc-icon {
-  width: 38px; height: 38px;
-  border-radius: 8px;
-  background: #0B5D5611;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: #0B5D56;
-  flex-shrink: 0;
-}
-.svc-name { font-size: 13px; font-weight: 600; color: #111; }
-.svc-desc { font-size: 11px; color: #888; margin-top: 1px; }
+.circuit-card { background: linear-gradient(135deg, #0B5D56, #094e48); border-radius: 14px; padding: 16px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden; animation: fadeUp 0.7s 0.5s ease both; }
+.circuit-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: rgba(201,168,76,0.1); border-radius: 50%; }
+.circuit-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.circuit-desc { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+.circuit-price { text-align: right; flex-shrink: 0; }
+.circuit-price .amount { font-size: 32px; font-weight: 900; background: linear-gradient(135deg, #C9A84C, #e8c97a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.circuit-price .per { font-size: 10px; color: rgba(255,255,255,0.55); letter-spacing: 0.05em; }
 
-.divider { border: none; border-top: 1px solid #f0f0f0; margin: 1.25rem 0; }
+.services-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.6s ease both; }
+.svc { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid #f0ece0; border-radius: 10px; background: #fdfbf6; }
+.svc-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #0B5D5615, #0B5D5608); border: 1px solid #0B5D5622; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #0B5D56; flex-shrink: 0; }
+.svc-name { font-size: 13px; font-weight: 700; color: #111; }
+.svc-desc { font-size: 11px; color: #999; margin-top: 2px; }
 
-/* CONTACT INFO */
-.info-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
-.info-row {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; color: #333;
-}
-.info-row i { color: #0B5D56; font-size: 16px; width: 20px; text-align: center; }
+.info-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.7s ease both; }
+.info-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #333; }
+.info-icon { width: 32px; height: 32px; border-radius: 8px; background: #0B5D5610; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.info-icon i { color: #0B5D56; font-size: 15px; }
 .info-row a { color: #333; text-decoration: none; }
 
-/* FOOTER */
-.footer {
-  background: #0B5D56;
-  margin: 0 -1.5rem -1.5rem;
-  padding: 1rem 1.5rem;
-  text-align: center;
-}
-.footer p { font-size: 11px; color: rgba(255,255,255,0.6); }
-.footer span { color: #C9A84C; font-weight: 600; }
+.footer { background: linear-gradient(135deg, #0B5D56, #094e48); padding: 1.2rem 1.5rem; text-align: center; margin: 0 -1.5rem -1.5rem; }
+.footer p { font-size: 11px; color: rgba(255,255,255,0.5); }
+.footer span { color: #C9A84C; font-weight: 700; }
 </style>
 
 <div class="page">
   <div class="hero">
     <div class="vip-badge">★ VIP SERVICE</div>
     <div class="logo-wrap">
-      <img src="https://i.ibb.co/cSnPMDzc/Artboard-1-0-75x.png" alt="Abdo Abrache Logo">
+      <img src="https://i.ibb.co/cSnPMDzc/Artboard-1-0-75x.png" alt="Abdo Abrache Logo" onerror="this.style.display='none'">
     </div>
     <div class="hero-name">Abdo Abrache</div>
     <div class="hero-title">Luxury Driver Services</div>
     <div class="gold-line"></div>
     <div class="car-wrap">
-      <img src="https://i.ibb.co/7tWSCTWN/pngwing-com-1.png" alt="Luxury Mercedes">
+      <img src="https://i.ibb.co/7tWSCTWN/pngwing-com-1.png" alt="Luxury Mercedes" onerror="this.style.display='none'">
     </div>
   </div>
 
   <div class="body">
-
     <div class="contact-row">
-      <a class="cbtn wa" href="https://wa.me/212647496051">
-        <i class="ti ti-brand-whatsapp"></i> WhatsApp
-      </a>
-      <a class="cbtn call" href="tel:+212647496051">
-        <i class="ti ti-phone"></i> Appeler
-      </a>
-      <a class="cbtn ig" href="https://instagram.com/abdo_abrache" target="_blank">
-        <i class="ti ti-brand-instagram"></i> Instagram
-      </a>
+      <a class="cbtn wa" href="https://wa.me/212647496051"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a>
+      <a class="cbtn call" href="tel:+212647496051"><i class="ti ti-phone"></i> Appeler</a>
+      <a class="cbtn ig" href="https://instagram.com/abdo_abrache" target="_blank"><i class="ti ti-brand-instagram"></i> Instagram</a>
+    </div>
+
+    <div class="sec-label">Offre Circuit</div>
+    <div class="circuit-card">
+      <div>
+        <div class="circuit-title">✈️ Circuit Privé</div>
+        <div class="circuit-desc">Marrakech & environs<br>Chauffeur privé toute la journée</div>
+      </div>
+      <div class="circuit-price">
+        <div class="amount">150€</div>
+        <div class="per">PAR JOUR</div>
+      </div>
     </div>
 
     <div class="sec-label">Nos Services</div>
     <div class="services-list">
       <div class="svc">
         <div class="svc-icon"><i class="ti ti-plane"></i></div>
-        <div>
-          <div class="svc-name">Transfert Aéroport</div>
-          <div class="svc-desc">Accueil & prise en charge VIP</div>
-        </div>
+        <div><div class="svc-name">Transfert Aéroport</div><div class="svc-desc">Accueil & prise en charge VIP</div></div>
       </div>
       <div class="svc">
         <div class="svc-icon"><i class="ti ti-building-skyscraper"></i></div>
-        <div>
-          <div class="svc-name">Transfert Hôtel & Riad</div>
-          <div class="svc-desc">Marrakech & toutes destinations</div>
-        </div>
+        <div><div class="svc-name">Transfert Hôtel & Riad</div><div class="svc-desc">Marrakech & toutes destinations</div></div>
       </div>
       <div class="svc">
         <div class="svc-icon"><i class="ti ti-map-2"></i></div>
-        <div>
-          <div class="svc-name">Excursions Privées</div>
-          <div class="svc-desc">Atlas, Essaouira, Ouarzazate...</div>
-        </div>
+        <div><div class="svc-name">Excursions Privées</div><div class="svc-desc">Atlas, Essaouira, Ouarzazate...</div></div>
       </div>
       <div class="svc">
         <div class="svc-icon"><i class="ti ti-crown"></i></div>
-        <div>
-          <div class="svc-name">Service VIP & Événements</div>
-          <div class="svc-desc">Mariage, soirée, déplacement pro</div>
-        </div>
+        <div><div class="svc-name">Service VIP & Événements</div><div class="svc-desc">Mariage, soirée, déplacement pro</div></div>
       </div>
     </div>
 
     <div class="sec-label">Contact</div>
     <div class="info-list">
-      <div class="info-row">
-        <i class="ti ti-phone"></i>
-        <a href="tel:+212647496051">+212 647 49 6051</a>
-      </div>
-      <div class="info-row">
-        <i class="ti ti-mail"></i>
-        <a href="mailto:abdelahabrache8@gmail.com">abdelahabrache8@gmail.com</a>
-      </div>
-      <div class="info-row">
-        <i class="ti ti-brand-instagram"></i>
-        <a href="https://instagram.com/abdo_abrache" target="_blank">@abdo_abrache</a>
-      </div>
-      <div class="info-row">
-        <i class="ti ti-map-pin"></i>
-        <span>Marrakech, Maroc</span>
-      </div>
+      <div class="info-row"><div class="info-icon"><i class="ti ti-phone"></i></div><a href="tel:+212647496051">+212 647 49 6051</a></div>
+      <div class="info-row"><div class="info-icon"><i class="ti ti-mail"></i></div><a href="mailto:abdelahabrache8@gmail.com">abdelahabrache8@gmail.com</a></div>
+      <div class="info-row"><div class="info-icon"><i class="ti ti-brand-instagram"></i></div><a href="https://instagram.com/abdo_abrache" target="_blank">@abdo_abrache</a></div>
+      <div class="info-row"><div class="info-icon"><i class="ti ti-map-pin"></i></div><span>Marrakech, Maroc</span></div>
     </div>
 
     <div class="footer">
       <p>© 2025 <span>Abdo Abrache</span> — Luxury Driver Services</p>
     </div>
-
   </div>
 </div>
