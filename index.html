@@ -279,12 +279,90 @@
       .cbtn:hover, .svc:hover { transform: none; }
     }
     /* No @property support: static gold ring */
-    @supports not (background: paint(x)) and  (not (syntax: '<angle>')) {
+    /* @supports not (background: paint(x)) and  (not (syntax: '<angle>')) {
       .cbtn.wa::before { background: var(--gold); 
+    } */
+  </style>
+
+
+  <style>
+    .lang-switch {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      backdrop-filter: blur(10px) saturate(140%);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(201, 168, 76, 0.5);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--green, #0B5D56);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+    .lang-btn:hover { background: rgba(11, 93, 86, 0.10); }
+    .lang-btn:active { transform: scale(0.96); }
+    .lang-btn:focus-visible { outline: 3px solid var(--gold, #C9A84C); outline-offset: 2px; }
+    .lang-btn[aria-pressed="true"] { background: var(--green, #0B5D56); color: #fff; }
+    .lang-btn[aria-pressed="true"]:hover { background: var(--green-dark, #094e48); }
+    .lang-flag {
+      font-size: 15px;
+      line-height: 1;
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+    }
+    /* Compact on small screens so nothing is ever covered */
+    @media (max-width: 639px) {
+      .lang-switch { top: 10px; right: 10px; padding: 3px; }
+      .lang-btn { padding: 6px 8px; font-size: 11px; gap: 4px; }
+      .lang-label { display: none; }
+    }
+    @media (max-width: 380px) {
+      .lang-switch { top: 8px; right: 8px; }
+      .lang-btn { padding: 5px 7px; }
+      .lang-flag { font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lang-btn { transition: none; }
+      .lang-btn:active { transform: none; }
     }
   </style>
 </head>
 <body>
+
+  /* <!-- ================= LANGUAGE SWITCHER (top-right, fixed) ================= --> */
+  <div class="lang-switch" id="langSwitch" role="group" aria-label="Langue / Language">
+    <button type="button" class="lang-btn" data-lang="en" lang="en" aria-label="English" title="English" aria-pressed="false">
+      <span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-label">English</span>
+    </button>
+    <button type="button" class="lang-btn" data-lang="fr" lang="fr" aria-label="Français" title="Français" aria-pressed="true">
+      <span class="lang-flag" aria-hidden="true">🇫🇷</span><span class="lang-label">Français</span>
+    </button>
+  </div>
+
   <div class="page">
 
     <header class="hero">
@@ -292,12 +370,12 @@
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="inner hero-grid">
         <div class="hero-copy">
-          <div class="vip-badge" data-hero>★ VIP SERVICE</div>
+          <div class="vip-badge" data-hero data-i18n="vip-badge">★ VIP SERVICE</div>
           <div class="logo-wrap" data-hero>
             <img src="https://i.ibb.co/cSnPMDzc/Artboard-1-0-75x.png" alt="Abdo Abrache Logo" onerror="this.style.display='none'">
           </div>
           <h1 class="hero-name" id="heroName" aria-label="Abdo Abrache">Abdo Abrache</h1>
-          <div class="hero-title" data-hero>Luxury Driver Services</div>
+          <div class="hero-title" data-hero data-i18n="hero-title">Luxury Driver Services</div>
           <div class="gold-line" id="goldLine"></div>
         </div>
         <div class="car-wrap" id="carWrap">
@@ -314,7 +392,7 @@
             <i class="ti ti-brand-whatsapp"></i> WhatsApp
           </a>
           <a class="cbtn call" href="tel:+212647496051">
-            <i class="ti ti-phone"></i> Appeler
+            <i class="ti ti-phone"></i> <span data-i18n="btn-call">Appeler</span>
           </a>
           <a class="cbtn ig" href="https://www.instagram.com/abdellah_abrache?igsh=MWduY3l3OHM4MHl4ag==" target="_blank" rel="noopener">
             <i class="ti ti-brand-instagram"></i> Instagram
@@ -322,55 +400,55 @@
         </div>
 
         <section>
-          <div class="sec-label" data-reveal>Offre Circuit</div>
+          <div class="sec-label" data-reveal data-i18n="sec-offer">Offre Circuit</div>
           <div class="circuit-card" data-reveal>
             <div>
-              <div class="circuit-title">✈️ Circuit Privé</div>
-              <div class="circuit-desc">Marrakech &amp; environs<br>Chauffeur privé toute la journée</div>
+              <div class="circuit-title" data-i18n="circuit-title">✈️ Circuit Privé</div>
+              <div class="circuit-desc" data-i18n="circuit-desc">Marrakech &amp; environs<br>Chauffeur privé toute la journée</div>
             </div>
             <div class="circuit-price">
               <div class="amount"><span id="priceNum" data-count="150">150</span>€</div>
-              <div class="per">PAR JOUR</div>
+              <div class="per" data-i18n="per-day">PAR JOUR</div>
             </div>
           </div>
         </section>
 
         <section>
-          <div class="sec-label" data-reveal>Nos Services</div>
+          <div class="sec-label" data-reveal data-i18n="sec-services">Nos Services</div>
           <div class="services-list" id="services">
             <div class="svc">
               <div class="svc-icon"><i class="ti ti-plane"></i></div>
               <div>
-                <div class="svc-name">Transfert Aéroport</div>
-                <div class="svc-desc">Accueil &amp; prise en charge VIP</div>
+                <div class="svc-name" data-i18n="svc-airport-name">Transfert Aéroport</div>
+                <div class="svc-desc" data-i18n="svc-airport-desc">Accueil &amp; prise en charge VIP</div>
               </div>
             </div>
             <div class="svc">
               <div class="svc-icon"><i class="ti ti-building-skyscraper"></i></div>
               <div>
-                <div class="svc-name">Transfert Hôtel &amp; Riad</div>
-                <div class="svc-desc">Marrakech &amp; toutes destinations</div>
+                <div class="svc-name" data-i18n="svc-hotel-name">Transfert Hôtel &amp; Riad</div>
+                <div class="svc-desc" data-i18n="svc-hotel-desc">Marrakech &amp; toutes destinations</div>
               </div>
             </div>
             <div class="svc">
               <div class="svc-icon"><i class="ti ti-map-2"></i></div>
               <div>
-                <div class="svc-name">Excursions Privées</div>
-                <div class="svc-desc">Atlas, Essaouira, Ouarzazate...</div>
+                <div class="svc-name" data-i18n="svc-tours-name">Excursions Privées</div>
+                <div class="svc-desc" data-i18n="svc-tours-desc">Atlas, Essaouira, Ouarzazate...</div>
               </div>
             </div>
             <div class="svc">
               <div class="svc-icon"><i class="ti ti-crown"></i></div>
               <div>
-                <div class="svc-name">Service VIP &amp; Événements</div>
-                <div class="svc-desc">Mariage, soirée, déplacement pro</div>
+                <div class="svc-name" data-i18n="svc-vip-name">Service VIP &amp; Événements</div>
+                <div class="svc-desc" data-i18n="svc-vip-desc">Mariage, soirée, déplacement pro</div>
               </div>
             </div>
           </div>
         </section>
 
         <section>
-          <div class="sec-label" data-reveal>Contact</div>
+          <div class="sec-label" data-reveal data-i18n="sec-contact">Contact</div>
           <div class="info-list" id="info">
             <div class="info-row">
               <div class="info-icon"><i class="ti ti-phone"></i></div>
@@ -386,7 +464,7 @@
             </div>
             <div class="info-row">
               <div class="info-icon"><i class="ti ti-map-pin"></i></div>
-              <span>Marrakech, Maroc</span>
+              <span data-i18n="info-location">Marrakech, Maroc</span>
             </div>
           </div>
         </section>
@@ -399,6 +477,119 @@
     </footer>
 
   </div>
+
+  <!-- ============================================================
+       LANGUAGE SWITCHING ENGINE — ADDITIVE ONLY.
+       Runs before the animation libraries so the correct language
+       is in place as soon as the page renders.
+       ============================================================ -->
+  <script>
+  (function () {
+    'use strict';
+
+    var STORAGE_KEY = 'abdo-abrache-lang';
+    var DEFAULT_LANG = 'fr';
+    var SUPPORTED = ['fr', 'en'];
+
+    /* ---- Translation dictionary (French = original content) ---- */
+    var translations = {
+      fr: {
+        'vip-badge':           '★ VIP SERVICE',
+        'hero-title':          'Luxury Driver Services',
+        'btn-call':            'Appeler',
+        'sec-offer':           'Offre Circuit',
+        'circuit-title':       '✈️ Circuit Privé',
+        'circuit-desc':        'Marrakech &amp; environs<br>Chauffeur privé toute la journée',
+        'per-day':             'PAR JOUR',
+        'sec-services':        'Nos Services',
+        'svc-airport-name':    'Transfert Aéroport',
+        'svc-airport-desc':    'Accueil &amp; prise en charge VIP',
+        'svc-hotel-name':      'Transfert Hôtel &amp; Riad',
+        'svc-hotel-desc':      'Marrakech &amp; toutes destinations',
+        'svc-tours-name':      'Excursions Privées',
+        'svc-tours-desc':      'Atlas, Essaouira, Ouarzazate...',
+        'svc-vip-name':        'Service VIP &amp; Événements',
+        'svc-vip-desc':        'Mariage, soirée, déplacement pro',
+        'sec-contact':         'Contact',
+        'info-location':       'Marrakech, Maroc'
+      },
+      en: {
+        'vip-badge':           '★ VIP SERVICE',
+        'hero-title':          'Luxury Driver Services',
+        'btn-call':            'Call',
+        'sec-offer':           'Tour Offer',
+        'circuit-title':       '✈️ Private Tour',
+        'circuit-desc':        'Marrakech &amp; surroundings<br>Private chauffeur all day long',
+        'per-day':             'PER DAY',
+        'sec-services':        'Our Services',
+        'svc-airport-name':    'Airport Transfer',
+        'svc-airport-desc':    'VIP welcome &amp; pickup',
+        'svc-hotel-name':      'Hotel &amp; Riad Transfer',
+        'svc-hotel-desc':      'Marrakech &amp; all destinations',
+        'svc-tours-name':      'Private Excursions',
+        'svc-tours-desc':      'Atlas, Essaouira, Ouarzazate...',
+        'svc-vip-name':        'VIP Service &amp; Events',
+        'svc-vip-desc':        'Weddings, parties, business trips',
+        'sec-contact':         'Contact',
+        'info-location':       'Marrakech, Morocco'
+      }
+    };
+
+    /* ---- Storage helpers (fail silently in private mode) ---- */
+    function getSavedLang() {
+      try {
+        var saved = window.localStorage.getItem(STORAGE_KEY);
+        if (saved && SUPPORTED.indexOf(saved) !== -1) { return saved; }
+      } catch (e) {}
+      return DEFAULT_LANG;
+    }
+
+    function saveLang(lang) {
+      try { window.localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    /* ---- Apply a language everywhere ---- */
+    function applyLanguage(lang) {
+      if (SUPPORTED.indexOf(lang) === -1) { lang = DEFAULT_LANG; }
+      var dict = translations[lang];
+
+      /* 1. <html lang="…"> */
+      document.documentElement.setAttribute('lang', lang);
+
+      /* 2. Every translatable text node */
+      var nodes = document.querySelectorAll('[data-i18n]');
+      for (var i = 0; i < nodes.length; i++) {
+        var key = nodes[i].getAttribute('data-i18n');
+        if (Object.prototype.hasOwnProperty.call(dict, key)) {
+          nodes[i].innerHTML = dict[key];
+        }
+      }
+
+      /* 3. Switcher active state */
+      var buttons = document.querySelectorAll('.lang-btn');
+      for (var j = 0; j < buttons.length; j++) {
+        var isActive = buttons[j].getAttribute('data-lang') === lang;
+        buttons[j].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      }
+
+      /* 4. Persist the choice */
+      saveLang(lang);
+    }
+
+    /* ---- Wire up the buttons (event delegation) ---- */
+    var switcher = document.getElementById('langSwitch');
+    if (switcher) {
+      switcher.addEventListener('click', function (event) {
+        var btn = event.target.closest ? event.target.closest('.lang-btn') : null;
+        if (!btn || !switcher.contains(btn)) { return; }
+        applyLanguage(btn.getAttribute('data-lang'));
+      });
+    }
+
+    /* ---- Initialise: saved choice, otherwise French ---- */
+    applyLanguage(getSavedLang());
+  })();
+  </script>
 
   <!-- Libraries: GSAP + ScrollTrigger + Lenis (pinned versions). Page works fully if any fail to load. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
