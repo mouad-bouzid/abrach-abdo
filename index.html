@@ -278,13 +278,11 @@
       .cbtn, .svc { transition: none; }
       .cbtn:hover, .svc:hover { transform: none; }
     }
-    /* No @property support: static gold ring */
-    /* @supports not (background: paint(x)) and  (not (syntax: '<angle>')) {
-      .cbtn.wa::before { background: var(--gold); 
-    } */
   </style>
 
-
+  <!-- ============================================================
+       LANGUAGE SWITCHER STYLES — ADDITIVE ONLY.
+       ============================================================ -->
   <style>
     .lang-switch {
       position: fixed;
@@ -353,13 +351,16 @@
 </head>
 <body>
 
-  
+  <!-- ================= LANGUAGE SWITCHER (top-right, fixed) ================= -->
   <div class="lang-switch" id="langSwitch" role="group" aria-label="Langue / Language">
     <button type="button" class="lang-btn" data-lang="en" lang="en" aria-label="English" title="English" aria-pressed="false">
       <span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-label">English</span>
     </button>
     <button type="button" class="lang-btn" data-lang="fr" lang="fr" aria-label="Français" title="Français" aria-pressed="true">
       <span class="lang-flag" aria-hidden="true">🇫🇷</span><span class="lang-label">Français</span>
+    </button>
+    <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-label="العربية" title="العربية" aria-pressed="false">
+      <span class="lang-flag" aria-hidden="true">🇸🇦</span><span class="lang-label">العربية</span>
     </button>
   </div>
 
@@ -473,7 +474,7 @@
     </main>
 
     <footer class="footer">
-      <p>© 2025 <span>Abdo Abrache</span> — Luxury Driver Services</p>
+      <p data-i18n="footer-text">© 2025 <span>Abdo Abrache</span> — Luxury Driver Services</p>
     </footer>
 
   </div>
@@ -489,7 +490,7 @@
 
     var STORAGE_KEY = 'abdo-abrache-lang';
     var DEFAULT_LANG = 'fr';
-    var SUPPORTED = ['fr', 'en'];
+    var SUPPORTED = ['fr', 'en', 'ar'];
 
     /* ---- Translation dictionary (French = original content) ---- */
     var translations = {
@@ -511,7 +512,8 @@
         'svc-vip-name':        'Service VIP &amp; Événements',
         'svc-vip-desc':        'Mariage, soirée, déplacement pro',
         'sec-contact':         'Contact',
-        'info-location':       'Marrakech, Maroc'
+        'info-location':       'Marrakech, Maroc',
+        'footer-text':         '© 2025 <span>Abdo Abrache</span> — Luxury Driver Services'
       },
       en: {
         'vip-badge':           '★ VIP SERVICE',
@@ -531,7 +533,29 @@
         'svc-vip-name':        'VIP Service &amp; Events',
         'svc-vip-desc':        'Weddings, parties, business trips',
         'sec-contact':         'Contact',
-        'info-location':       'Marrakech, Morocco'
+        'info-location':       'Marrakech, Morocco',
+        'footer-text':         '© 2025 <span>Abdo Abrache</span> — Luxury Driver Services'
+      },
+      ar: {
+        'vip-badge':           '★ خدمة VIP',
+        'hero-title':          'خدمات النقل الخاص الفاخر',
+        'btn-call':            'اتصل بنا',
+        'sec-offer':           'عرض الجولة',
+        'circuit-title':       '✈️ جولة خاصة',
+        'circuit-desc':        'مراكش والمناطق المحيطة<br>سائق خاص طوال اليوم',
+        'per-day':             'في اليوم',
+        'sec-services':        'خدماتنا',
+        'svc-airport-name':    'نقل المطار',
+        'svc-airport-desc':    'استقبال وخدمة VIP',
+        'svc-hotel-name':      'نقل الفندق والرياض',
+        'svc-hotel-desc':      'مراكش وجميع الوجهات',
+        'svc-tours-name':      'رحلات خاصة',
+        'svc-tours-desc':      'أطلس، الصويرة، ورزازات...',
+        'svc-vip-name':        'خدمة VIP والفعاليات',
+        'svc-vip-desc':        'حفلات الزفاف، الحفلات، رحلات العمل',
+        'sec-contact':         'اتصل بنا',
+        'info-location':       'مراكش، المغرب',
+        'footer-text':         '© 2025 <span>Abdo Abrache</span> —  خدمات النقل الخاص الفاخر'
       }
     };
 
